@@ -39,7 +39,7 @@ st.dataframe(df_salary)
 col_without_infl = [col for col in df_salary.columns if ('инфл.' not in col) and (col not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB'))]
 fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(df_salary[col_without_infl])
-ax.legend()
+ax.legend(col_without_infl)
 ax.set_title('Динамика номинальной заработной платы')
 ax.set_xlabel('Год')
 ax.set_ylabel('Номинальная зп')
