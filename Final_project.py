@@ -15,7 +15,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 # In[2]:
 
 
-df_salary = pd.read_csv('data_salary.csv', index_col='Год')
+df_salary = pd.read_csv('data/data_salary.csv', index_col='Год')
 df_salary = df_salary.rename(columns={'Здравоохранение и предоставление социальных услуг': 'Социальная сфера'})
 df_salary['ВВП'] = df_salary['ВВП'] * 1000000
 
