@@ -12,7 +12,7 @@ from streamlit_jupyter import StreamlitPatcher, tqdm
 
 StreamlitPatcher().jupyter()  # register streamlit with jupyter-compatible wrappers
 
-
+st.set_option('deprecation.showPyplotGlobalUse', False)
 # In[2]:
 
 
