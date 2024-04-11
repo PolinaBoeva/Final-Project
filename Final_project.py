@@ -112,7 +112,7 @@ for column in df_salary.columns:
 
 
 # График темпов роста
-name = f'Рост реальной зарплаты {status}'
+name = f'Изменение реальной зарплаты {status}'
 title = f'Процентное изменение реальных зарплат {status}'
 fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(df_salary[[name, 'Инфляция']])
