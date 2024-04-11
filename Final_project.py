@@ -104,7 +104,7 @@ st.pyplot(fig)
 for column in df_salary.columns:
    if column not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB') and ('инфл' not in column):
     name = f'{column} с учетом инфл.'
-    column_name_infl = f'Рост реальной зарплаты {column}'
+    column_name_infl = f'Изменение реальной зарплаты {column}'
     df_salary[column_name_infl] = df_salary[name].pct_change()*100
 
 
