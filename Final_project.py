@@ -41,9 +41,11 @@ fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(df_salary[col_without_infl])
 ax.set_title('Динамика номинальной заработной платы')
 ax.set_xlabel('Год')
+ax.set_ylabel('Номинальная зп')
 x_values = range(2000, 2023, 5)
 ax.set_xticks(x_values)
 plt.gca().spines[['top', 'right']].set_visible(False)
+ax.legend()
 st.pyplot(fig)
 
 col_infl = [col for col in df_salary.columns if 'инфл.' in col]
@@ -51,9 +53,11 @@ fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(df_salary[col_infl])
 ax.set_title('Динамика реальной заработной платы')
 ax.set_xlabel('Год')
+ax.set_ylabel('Реальная зп')
 x_values = range(2000, 2023, 5)
 ax.set_xticks(x_values)
 plt.gca().spines[['top', 'right']].set_visible(False)
+ax.legend()
 st.pyplot(fig)
 
 
