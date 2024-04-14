@@ -52,7 +52,7 @@ st.dataframe(df_salary)
 
 
 # Графики
-col_without_infl = [col for col in df_salary.columns if ('инфл.' not in col) and (col not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB')) and (['ИПЦ', 'ИНЗ', 'ИРЗ'] not in col)]
+col_without_infl = [col for col in df_salary.columns if ('инфл.' not in col) and (col not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB')) and ('ИПЦ' not in col and 'ИНЗ' not in col and 'ИРЗ' not in col)]
 fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(df_salary[col_without_infl])
 ax.legend(col_without_infl)
