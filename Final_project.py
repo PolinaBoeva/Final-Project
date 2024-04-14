@@ -19,16 +19,31 @@ df_salary = pd.read_csv('data/data_salary.csv', index_col='Год')
 df_salary = df_salary.rename(columns={'Здравоохранение и предоставление социальных услуг': 'Социальная сфера'})
 df_salary['ВВП'] = df_salary['ВВП'] * 1000000
 
+df_salary["ИПЦ"] = 100 + df_salary['Инфляция'].shift(1)
+df_salary["ИПЦ"][[0]] = 100
+cpi_array = df_salary["ИПЦ"].to_numpy()
+cpi_base = cpi_array[0]
+cpi_values = []
+for i in range(len(cpi_array)):
+    cpi_2000_price = cpi_base*np.prod(cpi_array[1:i+1])/100**(i)
+    cpi_values.append(cpi_2000_price)
+df_salary['ИПЦ баз'] = cpi_values
 
-# In[3]:
+st.title("Анализ зарплат в России по секторам")
 
+# Поправка на инфляцию
+# Зарплата в ценах 2000 года
 
 st.title("Анализ зарплат в России")
-# Поправка на инфляцию
 for column in df_salary.columns:
    if column not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB'):
     name = f'{column} с учетом инфл.'
-    df_salary[name] = df_salary[column]*(1 - df_salary["Инфляция"]/100)
+    name_s = f'ИНЗ {column}'
+    name_r = f'ИPЗ {column}'
+    df_salary[name_s] = df_salary[column] * 100 / df_salary[column][[0]]
+    df_salary[name_r] = df_salary[name_s] / df_salary['ИПЦ баз']
+    df_salary[name] = df_salary[column][[0]]*df_salary[name_r]
+
 st.dataframe(df_salary)
 
 
