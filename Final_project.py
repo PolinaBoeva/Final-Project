@@ -187,7 +187,7 @@ st.markdown("Можно заметить сильную положительну
 
 # Тепловая карта
 plt.figure(figsize=(12,10), dpi= 80)
-col = [col for col in df_salary.columns if 'Рост' not in col and ('ИПЦ' not in col and 'ИНЗ' not in col and 'ИPЗ' not in col)]
+col = [col for col in df_salary.columns if ('Рост' not in col) and ('ИПЦ' not in col and 'ИНЗ' not in col and 'ИPЗ' not in col)]
 sns.heatmap(df_salary[col].corr(), xticklabels=df_salary[col].corr().columns, yticklabels=df_salary[col].corr().columns, cmap='RdYlGn', center=0, annot=True)
 plt.title('Корреляции', fontsize=22)
 plt.xticks(fontsize=12)
