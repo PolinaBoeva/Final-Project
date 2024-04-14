@@ -64,7 +64,7 @@ ax.set_xticks(x_values)
 plt.gca().spines[['top', 'right']].set_visible(False)
 st.pyplot(fig)
 
-col_infl = [col for col in df_salary.columns if 'инфл.' in col]
+col_infl = [col for col in df_salary.columns if 'инфл.' in col and "ИПЦ" not in col]
 fig, ax = plt.subplots(figsize=(8, 4))
 ax.plot(df_salary[col_infl])
 ax.legend(col_infl)
@@ -88,7 +88,7 @@ st.markdown("На графиках виден рост номинальной и
 
 # Выбор истересующего сектора стримлит
 sector = list(df_salary.columns)
-sector = [i for i in sector if ('инфл.' not in i) and (i not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB'))]
+sector = [i for i in sector if ('инфл.' not in i) and (i not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB')) and ('ИПЦ' not in i and 'ИНЗ' not in i and 'ИPЗ' not in i)]
 st.sidebar.write("Выбери интересующий сектор")
 status = st.sidebar.radio('sector:', sector)
 
@@ -118,7 +118,7 @@ st.pyplot(fig)
 
 # Рост от года к году в %
 for column in df_salary.columns:
-   if column not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB') and ('инфл' not in column):
+   if column not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB') and ('инфл' not in column) and ('ИПЦ' not in column and 'ИНЗ' not in column and 'ИPЗ' not in column):
     name = f'{column} с учетом инфл.'
     column_name_infl = f'Изменение реальной зарплаты {column}'
     df_salary[column_name_infl] = df_salary[name].pct_change()*100
