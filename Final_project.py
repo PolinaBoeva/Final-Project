@@ -20,7 +20,7 @@ df_salary = df_salary.rename(columns={'Здравоохранение и пре�
 df_salary['ВВП'] = df_salary['ВВП'] * 1000000
 
 df_salary["ИПЦ"] = 100 + df_salary['Инфляция'].shift(1)
-df_salary["ИПЦ"][[0]] = 100
+df_salary["ИПЦ"][[2000]] = 100
 cpi_array = df_salary["ИПЦ"].to_numpy()
 cpi_base = cpi_array[0]
 cpi_values = []
@@ -40,9 +40,9 @@ for column in df_salary.columns:
     name = f'{column} с учетом инфл.'
     name_s = f'ИНЗ {column}'
     name_r = f'ИPЗ {column}'
-    df_salary[name_s] = df_salary[column] * 100 / df_salary[column][[0]]
+    df_salary[name_s] = df_salary[column] * 100 / df_salary[column][[2000]]
     df_salary[name_r] = df_salary[name_s] / df_salary['ИПЦ баз']
-    df_salary[name] = df_salary[column][[0]]*df_salary[name_r]
+    df_salary[name] = df_salary[column][[2000]]*df_salary[name_r]
 
 st.dataframe(df_salary)
 
