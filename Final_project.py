@@ -44,12 +44,14 @@ for column in df_salary.columns:
     df_salary[name_r] = df_salary[name_s] / df_salary['ИПЦ баз']
     df_salary[name] = df_salary[column][2000]*df_salary[name_r]
 
-st.dataframe(df_salary)
-
-st.markdown('''Зарплаты с учетом инфляции (реальные зарплаты) расчитываются в ценах базового 2000 года.  
+st.markdown('''Зарплаты с учетом инфляции (реальные зарплаты) рассчитаны в ценах базового 2000 года.  
 **ИПЦ баз** - базисный индекс потребительских цен.  
 **ИНЗ** - индекс номинальной зарплаты.  
 **ИРЗ** - индекс реальной заработной платы.''')
+
+st.dataframe(df_salary)
+
+
 
 # In[4]:
 
