@@ -30,14 +30,13 @@ for i in range(len(cpi_array)):
     cpi_values.append(cpi_2000_price)
 df_salary['ИПЦ баз'] = cpi_values
 
-st.title("Анализ зарплат в России по секторам")
+st.title("Анализ заработных плат в России по секторам")
 
 # Поправка на инфляцию
 # Зарплата в ценах 2000 года
 
-st.title("Анализ зарплат в России")
 for column in df_salary.columns:
-   if column not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB'):
+   if column not in ('Инфляция', 'ВВП', 'Родившиеся', 'USD/RUB') and ('ИПЦ' not in  column and 'ИНЗ' not in  column and 'ИPЗ' not in  column):
     name = f'{column} с учетом инфл.'
     name_s = f'ИНЗ {column}'
     name_r = f'ИPЗ {column}'
@@ -47,6 +46,7 @@ for column in df_salary.columns:
 
 st.dataframe(df_salary)
 
+st.markdown("Зарплаты с учетом инфляции (реальные зарплаты) расчитываются в ценах базового 2000 года.   **ИПЦ баз** - базисный индекс потребительских цен.   **ИНЗ** - индекс номинальной зарплаты.   **ИРЗ** - индекс реальной заработной платы.   Реальная заработная плата рассчитывалась как зп 2000 года * ИРЗ")
 
 # In[4]:
 
